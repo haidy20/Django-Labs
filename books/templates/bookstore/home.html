@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Book Store Home {% endblock %}
+
+{% block content %}
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #e6f7ff; /* Light blue background */
+    }
+    .table img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    .btn-info {
+        background-color: #4da6ff; /* Blue background */
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .btn-info:hover {
+        background-color: #007bff; /* Darker blue background on hover */
+    }
+</style>
+
+<h1 style="text-align: center;">All Books</h1>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>No of Pages</th>
+        <th>Author</th>
+        <th>Image</th>
+        <th>Show</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.nums }}</td>
+        <td>{{ book.author }}</td>
+        <td><img src="{% static 'books/images/'|add:book.image %}" alt="{{ book.name }}"></td>
+        <td><a class="btn btn-info" href="{% url 'book_profile' book.id %}">Show</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

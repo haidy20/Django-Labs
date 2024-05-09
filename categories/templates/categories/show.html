@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 style="text-align: center">{{ category.name }}</h2>
+<h5 class="card-title" style="text-align: center; margin-bottom: 80px;">{{ category.description }}</h5>
+
+<div class="row" style="text-align: center">
+    {% for book in category.allbooks.all %}
+    <div class="col-md-3 mb-3">
+        <div class="card baby-blue-card">
+            <div class="card-body">
+                <img src="{{ book.image_url }}" class="card-img-top" alt="..." style="max-width: 200px; max-height: 200px; margin-bottom: 12px;">
+                <h5 class="card-title"style="margin-bottom: 12px;" >{{ book.name }}</h5>
+                <a href="#" class="btn btn-primary">Show More</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No books in this category yet.</p>
+    {% endfor %}
+</div>
+<style>
+    .baby-blue-card {
+        background-color: #B0E0E6; /* Baby blue color */
+    }
+</style>
+{% endblock %}

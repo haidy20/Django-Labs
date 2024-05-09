@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<h2> Add New Book </h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" required class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" name="price" required class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Number of Pages</label>
+        <input type="number" name="nums" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" name="author" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input type="file" name="image" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Code</label>
+        <input type="text" name="code" class="form-control">
+      </div>  
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+{% endblock %}

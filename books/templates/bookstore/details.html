@@ -1,0 +1,21 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+{% comment %} {{book}} {% endcomment %}
+
+<div class="card" style="width: 18rem;">
+    <img src="{% static 'books/images/' %}{{book.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{book.name}}</h5>
+      <p class="card-text">Price: {{book.price}}</p>
+      <p class="card-text">No of Pages: {{book.nums}}</p>
+      <p class="card-text">Auther: {{book.author}}</p>
+      <a href="{% url 'books.update' book.id %}" class="btn btn-primary">Update</a>
+      <a href="#" class="btn btn-primary"> Ok </a>
+    </div>
+  </div>
+   <script src="{% static 'books/js/script.js'%}">
+
+  </script>
+
+{% endblock %}

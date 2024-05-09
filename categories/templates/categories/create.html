@@ -1,0 +1,87 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-3 mb-5 bg-body">
+                <div class="card-header custom-bg-babyblue text-white">
+                    <h2 class="mb-0">Add Category</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" id="category-form">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                {% comment %} <strong>Error!</strong> Please correct the following: {% endcomment %}
+                                
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                
+                            </div>
+                        {% endif %}
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Description</label>
+                            {{ form.description }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Add Category</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-bg-babyblue {
+        background-color: #89CFF0; /* Baby blue color */
+    }
+
+    /* Additional custom styles */
+    #category-form {
+        padding: 20px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+    }
+
+    #category-form .form-label {
+        color: #333;
+        font-weight: bold;
+    }
+
+    #category-form input[type="text"],
+    #category-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    #category-form button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #category-form button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Categories From DB {% endblock %}
+
+{% block content %}
+<h1> All Categories </h1>
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #e6f7ff; /* Light blue background */
+    }
+    .table img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    .btn-info {
+        background-color: #4da6ff; /* Blue background */
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .btn-info:hover {
+        background-color: #007bff; /* Darker blue background on hover */
+    }
+</style>
+<h1 style="text-align: center;">All Categories</h1>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    {% for category in categories %}
+    <tr>
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        {% comment %} <td>
+            <a class="btn btn-info" href="{{category.show_url}}">Show</a>
+        </td> {% endcomment %}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

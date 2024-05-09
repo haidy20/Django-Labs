@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<h2> Book Details From DataBase </h2>
+<div class="card" style="width: 14rem;">
+    <img src="{{book.image_url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{book.name}}</h5>
+      <p class="card-text">Price: {{book.price}}</p>
+      <p class="card-text">No of Pages: {{book.nums}}</p>
+      <p class="card-text">Auther: {{book.author}}</p>
+      <p class="card-text">Code: {{book.code}}</p>
+      <p class="card-text">Created_at: {{book.created_at}}</p>
+      <p class="card-text">Updated_at: {{book.updated_at}}</p>
+      <p class="card-text">Category: {{book.category}}<br>
+
+      <p class="card-text"> Description: {{book.category.description}}
+
+      </p>
+      {% comment %} {{ book.show_url }} {% endcomment %}
+
+      <a href="#" class="btn btn-primary"> Show More </a>
+    </div>
+  </div>
+  <h1> See also :: Books in the same category </h1>
+  <h3>{{book.category.allbooks.all}}</h3>
+  {% for book in book.category.allbooks.all %}
+     <li> <a href="{{book.show_url}}"> {{book}}  </a></li>
+      {% endfor %}
+
+
+  <script src="{% static 'books/js/script.js'%}">
+
+  </script> 
+
+{% endblock %}

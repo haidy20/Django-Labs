@@ -1,0 +1,75 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Book Store From DB {% endblock %}
+
+{% block content %}
+<h1> All Books From DataBase </h1>
+<a href="{% url 'books.create' %}" class="btn btn-info"> Create New Book  </a>
+<a href="{% url 'books.create.forms' %}" class="btn btn-primary"> Create New Book via Form </a>
+<a href="{% url 'books.createmodel' %}" class="btn btn-danger"> Create Using Model Form</a>
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #e6f7ff; /* Light blue background */
+    }
+    .table img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    .btn-info {
+        background-color: #4da6ff; /* Blue background */
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .btn-info:hover {
+        background-color: #007bff; /* Darker blue background on hover */
+    }
+</style>
+<h1 style="text-align: center;">All Books</h1>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>No of Pages</th>
+        <th>Author</th>
+        <th>Image</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Update</th>
+
+
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.nums }}</td>
+        <td>{{ book.author }}</td>
+        {% comment %} <td><img src="{% static 'books/images/'|add:book.image %}" alt="{{ book.name }}"></td> {% endcomment %}
+        <td> <img width="200" height="200" src="{{book.image_url}}"></td>
+        <td><a class="btn btn-info" href="{{book.show_url}}">Show</a></td>
+        <td><a class="btn btn-warning" href="{{book.edit_url}}">Edit</a></td>
+        <td><a class="btn btn-danger" href="{{book.delete_url}}">Delete</a></td>
+        <td><a class="btn btn-primary" href="{% url 'books.update' book.id %}">Update</a></td>
+                
+
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
